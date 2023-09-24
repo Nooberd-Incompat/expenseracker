@@ -1,3 +1,4 @@
+import 'package:expenseracker/new_expense.dart';
 import 'package:expenseracker/widgets/expenses_list/expenses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:expenseracker/models/expense.dart';
@@ -18,14 +19,34 @@ class _ExpensesState extends State<Expenses> {
         amount: 412,
         date: DateTime.now(),
         category: Category.work),
+    Expense(
+        title: "Sports Items",
+        amount: 514,
+        date: DateTime.now(),
+        category: Category.leisure),
   ];
+
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const NewExpense(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("Flutter Expense Tracker")),
+        actions: [
+          IconButton(
+            onPressed: _openAddExpenseOverlay,
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
       body: Column(
         children: [
-          const Text("Something"),
           Expanded(
             child: ExpensesList(expenses: _registeredExpenses),
           ),
