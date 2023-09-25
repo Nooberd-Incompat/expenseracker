@@ -2,6 +2,7 @@ import 'package:expenseracker/new_expense.dart';
 import 'package:expenseracker/widgets/expenses_list/expenses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:expenseracker/models/expense.dart';
+import 'package:expenseracker/widgets/chart/chart.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -85,6 +86,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
+          Chart(expenses: _registeredExpenses),
           Expanded(
             child: mainContent,
           ),
